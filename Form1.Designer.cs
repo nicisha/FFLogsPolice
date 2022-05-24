@@ -163,7 +163,7 @@
             this.button1.Location = new System.Drawing.Point(808, 73);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(92, 25);
-            this.button1.TabIndex = 0;
+            this.button1.TabIndex = 1;
             this.button1.Text = "背调一下";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
@@ -1449,7 +1449,7 @@
             this.TeamBox.Location = new System.Drawing.Point(175, 70);
             this.TeamBox.Name = "TeamBox";
             this.TeamBox.Size = new System.Drawing.Size(584, 25);
-            this.TeamBox.TabIndex = 6;
+            this.TeamBox.TabIndex = 0;
             this.TeamBox.UseSystemPasswordChar = true;
             // 
             // label66
@@ -1476,7 +1476,7 @@
             this.MacroButton.Location = new System.Drawing.Point(947, 73);
             this.MacroButton.Name = "MacroButton";
             this.MacroButton.Size = new System.Drawing.Size(92, 25);
-            this.MacroButton.TabIndex = 0;
+            this.MacroButton.TabIndex = 2;
             this.MacroButton.Text = "生成宏";
             this.MacroButton.UseVisualStyleBackColor = true;
             this.MacroButton.Click += new System.EventHandler(this.Macro_Click);
