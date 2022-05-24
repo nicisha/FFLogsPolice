@@ -14,6 +14,7 @@ namespace FFLogsPolice
 {
     public partial class FFLogsPolice : Form
     {
+        public static string FFLogsV1Key;
         CPlayer[] cPlayers = new CPlayer[8];
         public FFLogsPolice()
         {
@@ -35,487 +36,120 @@ namespace FFLogsPolice
             Player8Box.Text = "伊安娜乔苏拿";
             Server8Box.Text = "神拳痕";
             StreamReader keyreader = new StreamReader("key.ini");
-            KeyBox.Text = keyreader.ReadLine();
+            FFLogsV1Key = keyreader.ReadLine();
+            KeyBox.Text = FFLogsV1Key;
         }
         void SurveyPlayer()
         {
-            string url = "https://www.fflogs.com/v1/parses/character/"
-                + PlayerBox.Text + "/" + ServerBox.Text + "/CN?zone=44&metric=rdps&timeframe=historical&api_key="
-                + KeyBox.Text;
-            Uri uri = new Uri(url);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream stream = response.GetResponseStream();
-            StreamReader streamReader = new StreamReader(stream);
-            string json = streamReader.ReadToEnd();
             CPlayer player = new CPlayer();
-            player.ConvertFromJson(json);
+            player.name = PlayerBox.Text;
+            player.server = ServerBox.Text;
+            if (!player.Survey())
+                return;
             cPlayers[0] = player;
-            CParse p1s = player.FindParse(78);
-            if (p1s == null)
-            {
-                player1raid1Box.Text = "无记录";
-            }
-            else
-            {
-                player1raid1Box.Text = p1s.getspecpct();
-            }
-            CParse p2s = player.FindParse(79);
-            if (p2s == null)
-            {
-                player1raid2Box.Text = "无记录";
-            }
-            else
-            {
-                player1raid2Box.Text = p2s.getspecpct();
-            }
-            CParse p3s = player.FindParse(80);
-            if (p3s == null)
-            {
-                player1raid3Box.Text = "无记录";
-            }
-            else
-            {
-                player1raid3Box.Text = p3s.getspecpct();
-            }
-            CParse p4s_1 = player.FindParse(81);
-            if (p4s_1 == null)
-            {
-                player1raid4Box.Text = "无记录";
-            }
-            else
-            {
-                player1raid4Box.Text = p4s_1.getspecpct();
-            }
-            CParse p4s_2 = player.FindParse(82);
-            if (p4s_2 == null)
-            {
-                player1raid5Box.Text = "无记录";
-            }
-            else
-            {
-                player1raid5Box.Text = p4s_2.getspecpct();
-            }
+            player1raid1Box.Text = player.FindParseAndGetSpecPct(78);
+            player1raid2Box.Text = player.FindParseAndGetSpecPct(79);
+            player1raid3Box.Text = player.FindParseAndGetSpecPct(80);
+            player1raid4Box.Text = player.FindParseAndGetSpecPct(81);
+            player1raid5Box.Text = player.FindParseAndGetSpecPct(82);
         }
         void SurveyPlayer2()
         {
-            string url = "https://www.fflogs.com/v1/parses/character/"
-                + Player2Box.Text + "/" + Server2Box.Text + "/CN?zone=44&metric=rdps&timeframe=historical&api_key="
-                + KeyBox.Text;
-            Uri uri = new Uri(url);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream stream = response.GetResponseStream();
-            StreamReader streamReader = new StreamReader(stream);
-            string json = streamReader.ReadToEnd();
             CPlayer player = new CPlayer();
-            player.ConvertFromJson(json);
+            player.name = Player2Box.Text;
+            player.server = Server2Box.Text;
+            if (!player.Survey())
+                return;
             cPlayers[1] = player;
-            CParse p1s = player.FindParse(78);
-            if (p1s == null)
-            {
-                player2raid1Box.Text = "无记录";
-            }
-            else
-            {
-                player2raid1Box.Text = p1s.getspecpct();
-            }
-            CParse p2s = player.FindParse(79);
-            if (p2s == null)
-            {
-                player2raid2Box.Text = "无记录";
-            }
-            else
-            {
-                player2raid2Box.Text = p2s.getspecpct();
-            }
-            CParse p3s = player.FindParse(80);
-            if (p3s == null)
-            {
-                player2raid3Box.Text = "无记录";
-            }
-            else
-            {
-                player2raid3Box.Text = p3s.getspecpct();
-            }
-            CParse p4s_1 = player.FindParse(81);
-            if (p4s_1 == null)
-            {
-                player2raid4Box.Text = "无记录";
-            }
-            else
-            {
-                player2raid4Box.Text = p4s_1.getspecpct();
-            }
-            CParse p4s_2 = player.FindParse(82);
-            if (p4s_2 == null)
-            {
-                player2raid5Box.Text = "无记录";
-            }
-            else
-            {
-                player2raid5Box.Text = p4s_2.getspecpct();
-            }
+            player2raid1Box.Text = player.FindParseAndGetSpecPct(78);
+            player2raid2Box.Text = player.FindParseAndGetSpecPct(79);
+            player2raid3Box.Text = player.FindParseAndGetSpecPct(80);
+            player2raid4Box.Text = player.FindParseAndGetSpecPct(81);
+            player2raid5Box.Text = player.FindParseAndGetSpecPct(82);
         }
         void SurveyPlayer3()
         {
-            string url = "https://www.fflogs.com/v1/parses/character/"
-                + Player3Box.Text + "/" + Server3Box.Text + "/CN?zone=44&metric=rdps&timeframe=historical&api_key="
-                + KeyBox.Text;
-            Uri uri = new Uri(url);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream stream = response.GetResponseStream();
-            StreamReader streamReader = new StreamReader(stream);
-            string json = streamReader.ReadToEnd();
             CPlayer player = new CPlayer();
-            player.ConvertFromJson(json);
+            player.name = Player3Box.Text;
+            player.server = Server3Box.Text;
+            if (!player.Survey())
+                return;
             cPlayers[2] = player;
-            CParse p1s = player.FindParse(78);
-            if (p1s == null)
-            {
-                player3raid1Box.Text = "无记录";
-            }
-            else
-            {
-                player3raid1Box.Text = p1s.getspecpct();
-            }
-            CParse p2s = player.FindParse(79);
-            if (p2s == null)
-            {
-                player3raid2Box.Text = "无记录";
-            }
-            else
-            {
-                player3raid2Box.Text = p2s.getspecpct();
-            }
-            CParse p3s = player.FindParse(80);
-            if (p3s == null)
-            {
-                player3raid3Box.Text = "无记录";
-            }
-            else
-            {
-                player3raid3Box.Text = p3s.getspecpct();
-            }
-            CParse p4s_1 = player.FindParse(81);
-            if (p4s_1 == null)
-            {
-                player3raid4Box.Text = "无记录";
-            }
-            else
-            {
-                player3raid4Box.Text = p4s_1.getspecpct();
-            }
-            CParse p4s_2 = player.FindParse(82);
-            if (p4s_2 == null)
-            {
-                player3raid5Box.Text = "无记录";
-            }
-            else
-            {
-                player3raid5Box.Text = p4s_2.getspecpct();
-            }
+            player3raid1Box.Text = player.FindParseAndGetSpecPct(78);
+            player3raid2Box.Text = player.FindParseAndGetSpecPct(79);
+            player3raid3Box.Text = player.FindParseAndGetSpecPct(80);
+            player3raid4Box.Text = player.FindParseAndGetSpecPct(81);
+            player3raid5Box.Text = player.FindParseAndGetSpecPct(82);
         }
         void SurveyPlayer4()
         {
-            string url = "https://www.fflogs.com/v1/parses/character/"
-                + Player4Box.Text + "/" + Server4Box.Text + "/CN?zone=44&metric=rdps&timeframe=historical&api_key="
-                + KeyBox.Text;
-            Uri uri = new Uri(url);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream stream = response.GetResponseStream();
-            StreamReader streamReader = new StreamReader(stream);
-            string json = streamReader.ReadToEnd();
             CPlayer player = new CPlayer();
-            player.ConvertFromJson(json);
+            player.name = Player4Box.Text;
+            player.server = Server4Box.Text;
+            if (!player.Survey())
+                return;
             cPlayers[3] = player;
-            CParse p1s = player.FindParse(78);
-            if (p1s == null)
-            {
-                player4raid1Box.Text = "无记录";
-            }
-            else
-            {
-                player4raid1Box.Text = p1s.getspecpct();
-            }
-            CParse p2s = player.FindParse(79);
-            if (p2s == null)
-            {
-                player4raid2Box.Text = "无记录";
-            }
-            else
-            {
-                player4raid2Box.Text = p2s.getspecpct();
-            }
-            CParse p3s = player.FindParse(80);
-            if (p3s == null)
-            {
-                player4raid3Box.Text = "无记录";
-            }
-            else
-            {
-                player4raid3Box.Text = p3s.getspecpct();
-            }
-            CParse p4s_1 = player.FindParse(81);
-            if (p4s_1 == null)
-            {
-                player4raid4Box.Text = "无记录";
-            }
-            else
-            {
-                player4raid4Box.Text = p4s_1.getspecpct();
-            }
-            CParse p4s_2 = player.FindParse(82);
-            if (p4s_2 == null)
-            {
-                player4raid5Box.Text = "无记录";
-            }
-            else
-            {
-                player4raid5Box.Text = p4s_2.getspecpct();
-            }
+            player4raid1Box.Text = player.FindParseAndGetSpecPct(78);
+            player4raid2Box.Text = player.FindParseAndGetSpecPct(79);
+            player4raid3Box.Text = player.FindParseAndGetSpecPct(80);
+            player4raid4Box.Text = player.FindParseAndGetSpecPct(81);
+            player4raid5Box.Text = player.FindParseAndGetSpecPct(82);
         }
         void SurveyPlayer5()
         {
-            string url = "https://www.fflogs.com/v1/parses/character/"
-                + Player5Box.Text + "/" + Server5Box.Text + "/CN?zone=44&metric=rdps&timeframe=historical&api_key="
-                + KeyBox.Text;
-            Uri uri = new Uri(url);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream stream = response.GetResponseStream();
-            StreamReader streamReader = new StreamReader(stream);
-            string json = streamReader.ReadToEnd();
             CPlayer player = new CPlayer();
-            player.ConvertFromJson(json);
+            player.name = Player5Box.Text;
+            player.server = Server5Box.Text;
+            if (!player.Survey())
+                return;
             cPlayers[4] = player;
-            CParse p1s = player.FindParse(78);
-            if (p1s == null)
-            {
-                player5raid1Box.Text = "无记录";
-            }
-            else
-            {
-                player5raid1Box.Text = p1s.getspecpct();
-            }
-            CParse p2s = player.FindParse(79);
-            if (p2s == null)
-            {
-                player5raid2Box.Text = "无记录";
-            }
-            else
-            {
-                player5raid2Box.Text = p2s.getspecpct();
-            }
-            CParse p3s = player.FindParse(80);
-            if (p3s == null)
-            {
-                player5raid3Box.Text = "无记录";
-            }
-            else
-            {
-                player5raid3Box.Text = p3s.getspecpct();
-            }
-            CParse p4s_1 = player.FindParse(81);
-            if (p4s_1 == null)
-            {
-                player5raid4Box.Text = "无记录";
-            }
-            else
-            {
-                player5raid4Box.Text = p4s_1.getspecpct();
-            }
-            CParse p4s_2 = player.FindParse(82);
-            if (p4s_2 == null)
-            {
-                player5raid5Box.Text = "无记录";
-            }
-            else
-            {
-                player5raid5Box.Text = p4s_2.getspecpct();
-            }
+            player5raid1Box.Text = player.FindParseAndGetSpecPct(78);
+            player5raid2Box.Text = player.FindParseAndGetSpecPct(79);
+            player5raid3Box.Text = player.FindParseAndGetSpecPct(80);
+            player5raid4Box.Text = player.FindParseAndGetSpecPct(81);
+            player5raid5Box.Text = player.FindParseAndGetSpecPct(82);
         }
         void SurveyPlayer6()
         {
-            string url = "https://www.fflogs.com/v1/parses/character/"
-                + Player6Box.Text + "/" + Server6Box.Text + "/CN?zone=44&metric=rdps&timeframe=historical&api_key="
-                + KeyBox.Text;
-            Uri uri = new Uri(url);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream stream = response.GetResponseStream();
-            StreamReader streamReader = new StreamReader(stream);
-            string json = streamReader.ReadToEnd();
             CPlayer player = new CPlayer();
-            player.ConvertFromJson(json);
+            player.name = Player6Box.Text;
+            player.server = Server6Box.Text;
+            if (!player.Survey())
+                return;
             cPlayers[5] = player;
-            CParse p1s = player.FindParse(78);
-            if (p1s == null)
-            {
-                player6raid1Box.Text = "无记录";
-            }
-            else
-            {
-                player6raid1Box.Text = p1s.getspecpct();
-            }
-            CParse p2s = player.FindParse(79);
-            if (p2s == null)
-            {
-                player6raid2Box.Text = "无记录";
-            }
-            else
-            {
-                player6raid2Box.Text = p2s.getspecpct();
-            }
-            CParse p3s = player.FindParse(80);
-            if (p3s == null)
-            {
-                player6raid3Box.Text = "无记录";
-            }
-            else
-            {
-                player6raid3Box.Text = p3s.getspecpct();
-            }
-            CParse p4s_1 = player.FindParse(81);
-            if (p4s_1 == null)
-            {
-                player6raid4Box.Text = "无记录";
-            }
-            else
-            {
-                player6raid4Box.Text = p4s_1.getspecpct();
-            }
-            CParse p4s_2 = player.FindParse(82);
-            if (p4s_2 == null)
-            {
-                player6raid5Box.Text = "无记录";
-            }
-            else
-            {
-                player6raid5Box.Text = p4s_2.getspecpct();
-            }
+            player6raid1Box.Text = player.FindParseAndGetSpecPct(78);
+            player6raid2Box.Text = player.FindParseAndGetSpecPct(79);
+            player6raid3Box.Text = player.FindParseAndGetSpecPct(80);
+            player6raid4Box.Text = player.FindParseAndGetSpecPct(81);
+            player6raid5Box.Text = player.FindParseAndGetSpecPct(82);
         }
         void SurveyPlayer7()
         {
-            string url = "https://www.fflogs.com/v1/parses/character/"
-                + Player7Box.Text + "/" + Server7Box.Text + "/CN?zone=44&metric=rdps&timeframe=historical&api_key="
-                + KeyBox.Text;
-            Uri uri = new Uri(url);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream stream = response.GetResponseStream();
-            StreamReader streamReader = new StreamReader(stream);
-            string json = streamReader.ReadToEnd();
             CPlayer player = new CPlayer();
-            player.ConvertFromJson(json);
+            player.name = Player7Box.Text;
+            player.server = Server7Box.Text;
+            if (!player.Survey())
+                return;
             cPlayers[6] = player;
-            CParse p1s = player.FindParse(78);
-            if (p1s == null)
-            {
-                player7raid1Box.Text = "无记录";
-            }
-            else
-            {
-                player7raid1Box.Text = p1s.getspecpct();
-            }
-            CParse p2s = player.FindParse(79);
-            if (p2s == null)
-            {
-                player7raid2Box.Text = "无记录";
-            }
-            else
-            {
-                player7raid2Box.Text = p2s.getspecpct();
-            }
-            CParse p3s = player.FindParse(80);
-            if (p3s == null)
-            {
-                player7raid3Box.Text = "无记录";
-            }
-            else
-            {
-                player7raid3Box.Text = p3s.getspecpct();
-            }
-            CParse p4s_1 = player.FindParse(81);
-            if (p4s_1 == null)
-            {
-                player7raid4Box.Text = "无记录";
-            }
-            else
-            {
-                player7raid4Box.Text = p4s_1.getspecpct();
-            }
-            CParse p4s_2 = player.FindParse(82);
-            if (p4s_2 == null)
-            {
-                player7raid5Box.Text = "无记录";
-            }
-            else
-            {
-                player7raid5Box.Text = p4s_2.getspecpct();
-            }
+            player7raid1Box.Text = player.FindParseAndGetSpecPct(78);
+            player7raid2Box.Text = player.FindParseAndGetSpecPct(79);
+            player7raid3Box.Text = player.FindParseAndGetSpecPct(80);
+            player7raid4Box.Text = player.FindParseAndGetSpecPct(81);
+            player7raid5Box.Text = player.FindParseAndGetSpecPct(82);
         }
         void SurveyPlayer8()
         {
-            string url = "https://www.fflogs.com/v1/parses/character/"
-                + Player8Box.Text + "/" + Server8Box.Text + "/CN?zone=44&metric=rdps&timeframe=historical&api_key="
-                + KeyBox.Text;
-            Uri uri = new Uri(url);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream stream = response.GetResponseStream();
-            StreamReader streamReader = new StreamReader(stream);
-            string json = streamReader.ReadToEnd();
             CPlayer player = new CPlayer();
-            player.ConvertFromJson(json);
+            player.name = Player8Box.Text;
+            player.server = Server8Box.Text;
+            if (!player.Survey())
+                return;
             cPlayers[7] = player;
-            CParse p1s = player.FindParse(78);
-            if (p1s == null)
-            {
-                player8raid1Box.Text = "无记录";
-            }
-            else
-            {
-                player8raid1Box.Text = p1s.getspecpct();
-            }
-            CParse p2s = player.FindParse(79);
-            if (p2s == null)
-            {
-                player8raid2Box.Text = "无记录";
-            }
-            else
-            {
-                player8raid2Box.Text = p2s.getspecpct();
-            }
-            CParse p3s = player.FindParse(80);
-            if (p3s == null)
-            {
-                player8raid3Box.Text = "无记录";
-            }
-            else
-            {
-                player8raid3Box.Text = p3s.getspecpct();
-            }
-            CParse p4s_1 = player.FindParse(81);
-            if (p4s_1 == null)
-            {
-                player8raid4Box.Text = "无记录";
-            }
-            else
-            {
-                player8raid4Box.Text = p4s_1.getspecpct();
-            }
-            CParse p4s_2 = player.FindParse(82);
-            if (p4s_2 == null)
-            {
-                player8raid5Box.Text = "无记录";
-            }
-            else
-            {
-                player8raid5Box.Text = p4s_2.getspecpct();
-            }
+            player8raid1Box.Text = player.FindParseAndGetSpecPct(78);
+            player8raid2Box.Text = player.FindParseAndGetSpecPct(79);
+            player8raid3Box.Text = player.FindParseAndGetSpecPct(80);
+            player8raid4Box.Text = player.FindParseAndGetSpecPct(81);
+            player8raid5Box.Text = player.FindParseAndGetSpecPct(82);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -590,58 +224,28 @@ namespace FFLogsPolice
         }
         private void Macro_Click(object sender, EventArgs e)
         {
-            string rtn1 = "/p " + PlayerBox.Text + "@" + ServerBox.Text
-                + " P1S:" + cPlayers[0].FindParse(78).getpercentile()
-                + " P2S:" + cPlayers[0].FindParse(79).getpercentile()
-                + " P3S:" + cPlayers[0].FindParse(80).getpercentile()
-                + " P4S门神:" + cPlayers[0].FindParse(81).getpercentile()
-                + " P4S本体:" + cPlayers[0].FindParse(82).getpercentile() + "\r\n";
-            string rtn2 = "/p " + Player2Box.Text + "@" + Server2Box.Text
-                + " P1S:" + cPlayers[0].FindParse(78).getpercentile()
-                + " P2S:" + cPlayers[0].FindParse(79).getpercentile()
-                + " P3S:" + cPlayers[0].FindParse(80).getpercentile()
-                + " P4S门神:" + cPlayers[0].FindParse(81).getpercentile()
-                + " P4S本体:" + cPlayers[0].FindParse(82).getpercentile() + "\r\n";
-            string rtn3 = "/p " + Player3Box.Text + "@" + Server3Box.Text
-                + " P1S:" + cPlayers[0].FindParse(78).getpercentile()
-                + " P2S:" + cPlayers[0].FindParse(79).getpercentile()
-                + " P3S:" + cPlayers[0].FindParse(80).getpercentile()
-                + " P4S门神:" + cPlayers[0].FindParse(81).getpercentile()
-                + " P4S本体:" + cPlayers[0].FindParse(82).getpercentile() + "\r\n";
-            string rtn4 = "/p " + Player4Box.Text + "@" + Server4Box.Text
-                + " P1S:" + cPlayers[0].FindParse(78).getpercentile()
-                + " P2S:" + cPlayers[0].FindParse(79).getpercentile()
-                + " P3S:" + cPlayers[0].FindParse(80).getpercentile()
-                + " P4S门神:" + cPlayers[0].FindParse(81).getpercentile()
-                + " P4S本体:" + cPlayers[0].FindParse(82).getpercentile() + "\r\n";
-            string rtn5 = "/p " + Player5Box.Text + "@" + Server5Box.Text
-                + " P1S:" + cPlayers[0].FindParse(78).getpercentile()
-                + " P2S:" + cPlayers[0].FindParse(79).getpercentile()
-                + " P3S:" + cPlayers[0].FindParse(80).getpercentile()
-                + " P4S门神:" + cPlayers[0].FindParse(81).getpercentile()
-                + " P4S本体:" + cPlayers[0].FindParse(82).getpercentile() + "\r\n";
-            string rtn6 = "/p " + Player6Box.Text + "@" + Server6Box.Text
-                + " P1S:" + cPlayers[0].FindParse(78).getpercentile()
-                + " P2S:" + cPlayers[0].FindParse(79).getpercentile()
-                + " P3S:" + cPlayers[0].FindParse(80).getpercentile()
-                + " P4S门神:" + cPlayers[0].FindParse(81).getpercentile()
-                + " P4S本体:" + cPlayers[0].FindParse(82).getpercentile() + "\r\n";
-            string rtn7 = "/p " + Player7Box.Text + "@" + Server7Box.Text
-                + " P1S:" + cPlayers[0].FindParse(78).getpercentile()
-                + " P2S:" + cPlayers[0].FindParse(79).getpercentile()
-                + " P3S:" + cPlayers[0].FindParse(80).getpercentile()
-                + " P4S门神:" + cPlayers[0].FindParse(81).getpercentile()
-                + " P4S本体:" + cPlayers[0].FindParse(82).getpercentile() + "\r\n";
-            string rtn8 = "/p " + Player8Box.Text + "@" + Server8Box.Text
-                + " P1S:" + cPlayers[0].FindParse(78).getpercentile()
-                + " P2S:" + cPlayers[0].FindParse(79).getpercentile()
-                + " P3S:" + cPlayers[0].FindParse(80).getpercentile()
-                + " P4S门神:" + cPlayers[0].FindParse(81).getpercentile()
-                + " P4S本体:" + cPlayers[0].FindParse(82).getpercentile() + "\r\n";
-            string rtn = "/p FFLogs快查结果<se.1>\r\n" + rtn1 + rtn2 + rtn3 + rtn4 + rtn5 + rtn6 + rtn7 + rtn8;
-            string msg = "宏已完成，点击确定复制进剪贴板\r\n" + rtn;
-            MessageBox.Show(msg);
-            Clipboard.SetText(rtn);
+            string rtn = "/p FFLogs快查结果<se.1>\r\n";
+            int playercount = 0;
+            for (int i = 0; i < cPlayers.Count(); i++)
+            {
+                if (cPlayers[i].name.Length > 0)
+                {
+                    string str = "/p " + cPlayers[i].name + "@" + cPlayers[i].server
+                        + " P1S:" + cPlayers[i].FindParse(78).getpercentile()
+                        + " P2S:" + cPlayers[i].FindParse(79).getpercentile()
+                        + " P3S:" + cPlayers[i].FindParse(80).getpercentile()
+                        + " P4S门神:" + cPlayers[i].FindParse(81).getpercentile()
+                        + " P4S本体:" + cPlayers[i].FindParse(82).getpercentile() + "\r\n";
+                    rtn += str;
+                    playercount++;
+                }
+            }
+            if (playercount > 0)
+            {
+                string msg = "宏已完成，点击确定复制进剪贴板\r\n" + rtn;
+                MessageBox.Show(msg);
+                Clipboard.SetText(rtn);
+            }
         }
     }
 }

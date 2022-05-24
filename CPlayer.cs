@@ -5,13 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Net;
+using System.IO;
 
 namespace FFLogsPolice
 {
     internal class CPlayer
     {
-        string name;
-        string server;
+        public string name { get; set; }
+        public string server { get; set; }
         List<CParse> cParses = new List<CParse>();
         public CParse FindParse(int encounterID)
         {
@@ -30,6 +32,52 @@ namespace FFLogsPolice
                 }
             }
             return rtn;
+        }
+        public string FindParseAndGetSpecPct(int encounterID)
+        {
+            CParse parse = FindParse(encounterID);
+            if (parse == null)
+            {
+                return "无记录";
+            }
+            else
+            {
+                return parse.getspecpct();
+            }
+        }
+        public string FindParseAndGetPercentile(int encounterID)
+        {
+            CParse parse = FindParse(encounterID);
+            if (parse == null)
+            {
+                return "无记录";
+            }
+            else
+            {
+                return parse.getpercentile();
+            }
+        }
+        public bool Survey(string name, string server)
+        {
+            if (name == null || server == null)
+                return false;
+            if (name.Length == 0 || server.Length == 0)
+                return false;
+            string url = "https://www.fflogs.com/v1/parses/character/"
+                + name + "/" + server + "/CN?zone=44&metric=rdps&timeframe=historical&api_key="
+                + FFLogsPolice.FFLogsV1Key;
+            Uri uri = new Uri(url);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            Stream stream = response.GetResponseStream();
+            StreamReader streamReader = new StreamReader(stream);
+            string json = streamReader.ReadToEnd();
+            ConvertFromJson(json);
+            return true;
+        }
+        public bool Survey()
+        {
+            return Survey(name, server);
         }
         public void ConvertFromJson(string json)
         {
