@@ -27,10 +27,22 @@ namespace FFLogsPolice
 		public string estimated { get; set; }
 		public string getpercentile()
         {
-			if (percentile < 1)
-				return "1";
-			return Math.Floor(Convert.ToDecimal(percentile)).ToString();
-        }
+			decimal rtn = Math.Floor(Convert.ToDecimal(percentile));
+            string str = "灰";
+            if (rtn >= 25 && rtn < 50)
+                str = "绿";
+            else if (rtn >= 50 && rtn < 75)
+                str = "蓝";
+            else if (rtn >= 75 && rtn < 95)
+                str = "紫";
+            else if (rtn >= 95 && rtn < 99)
+                str = "橙";
+            else if (rtn >= 99 && rtn < 100)
+                str = "粉";
+            else if (rtn >= 100)
+                str = "金";
+            return rtn.ToString() + str;
+		}
 		string getspec()
         {
 			if (spec == "Astrologian")
@@ -75,7 +87,7 @@ namespace FFLogsPolice
 		}
 		public string getspecpct()
         {
-			return getspec() + getpercentile();
+			return getspec() + Math.Floor(Convert.ToDecimal(percentile)).ToString();
 
 		}
 	}

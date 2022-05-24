@@ -224,18 +224,22 @@ namespace FFLogsPolice
         }
         private void Macro_Click(object sender, EventArgs e)
         {
-            string rtn = "/p FFLogs快查结果<se.1>\r\n";
+            string rtn = "/p FFLogs快查结果<se.1>";
             int playercount = 0;
             for (int i = 0; i < cPlayers.Count(); i++)
             {
+                if (cPlayers[i] == null)
+                    continue;
+                if (cPlayers[i].name == null)
+                    continue;
                 if (cPlayers[i].name.Length > 0)
                 {
-                    string str = "/p " + cPlayers[i].name + "@" + cPlayers[i].server
+                    string str = "\r\n" + "/p " + cPlayers[i].name + "@" + cPlayers[i].server
                         + " P1S:" + cPlayers[i].FindParseAndGetPercentile(78)
                         + " P2S:" + cPlayers[i].FindParseAndGetPercentile(79)
                         + " P3S:" + cPlayers[i].FindParseAndGetPercentile(80)
                         + " P4S门神:" + cPlayers[i].FindParseAndGetPercentile(81)
-                        + " P4S本体:" + cPlayers[i].FindParseAndGetPercentile(82) + "\r\n";
+                        + " P4S本体:" + cPlayers[i].FindParseAndGetPercentile(82);
                     rtn += str;
                     playercount++;
                 }
