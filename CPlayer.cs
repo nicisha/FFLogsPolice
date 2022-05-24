@@ -11,6 +11,16 @@ namespace FFLogsPolice
     internal class CPlayer
     {
         List<CParse> cParses = new List<CParse>();
+        public CParse FindParse(int encounterID)
+        {
+            for (int i = 0; i < cParses.Count; i++)
+            {
+                CParse par = cParses[i];
+                if (par.encounterID == encounterID)
+                    return par;
+            }
+            return null;
+        }
         public void ConvertFromJson(string json)
         {
             Newtonsoft.Json.Linq.JArray array = (Newtonsoft.Json.Linq.JArray)Newtonsoft.Json.JsonConvert.DeserializeObject(json);
