@@ -33,7 +33,8 @@ namespace FFLogsPolice
             Server7Box.Text = "神拳痕";
             Player8Box.Text = "伊安娜乔苏拿";
             Server8Box.Text = "神拳痕";
-            KeyBox.Text = "f1db1a4a1127fd16b00d02b3cb3d0d77";
+            StreamReader keyreader = new StreamReader("key.ini");
+            KeyBox.Text = keyreader.ReadLine();
         }
         void SurveyPlayer()
         {
