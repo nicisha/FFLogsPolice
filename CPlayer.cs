@@ -81,7 +81,7 @@ namespace FFLogsPolice
         }
         public void ConvertFromJson(string json)
         {
-            Newtonsoft.Json.Linq.JArray array = (Newtonsoft.Json.Linq.JArray)Newtonsoft.Json.JsonConvert.DeserializeObject(json);
+            JArray array = (JArray)Newtonsoft.Json.JsonConvert.DeserializeObject(json);
             for (int i = 0; i < array.Count; i++)
             {
                 JObject jobj = JObject.Parse(array[i].ToString());

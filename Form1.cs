@@ -231,21 +231,26 @@ namespace FFLogsPolice
                 if (cPlayers[i].name.Length > 0)
                 {
                     string str = "/p " + cPlayers[i].name + "@" + cPlayers[i].server
-                        + " P1S:" + cPlayers[i].FindParse(78).getpercentile()
-                        + " P2S:" + cPlayers[i].FindParse(79).getpercentile()
-                        + " P3S:" + cPlayers[i].FindParse(80).getpercentile()
-                        + " P4S门神:" + cPlayers[i].FindParse(81).getpercentile()
-                        + " P4S本体:" + cPlayers[i].FindParse(82).getpercentile() + "\r\n";
+                        + " P1S:" + cPlayers[i].FindParseAndGetPercentile(78)
+                        + " P2S:" + cPlayers[i].FindParseAndGetPercentile(79)
+                        + " P3S:" + cPlayers[i].FindParseAndGetPercentile(80)
+                        + " P4S门神:" + cPlayers[i].FindParseAndGetPercentile(81)
+                        + " P4S本体:" + cPlayers[i].FindParseAndGetPercentile(82) + "\r\n";
                     rtn += str;
                     playercount++;
                 }
             }
+            string msg = "";
             if (playercount > 0)
             {
-                string msg = "宏已完成，点击确定复制进剪贴板\r\n" + rtn;
-                MessageBox.Show(msg);
+                msg = "宏已完成，点击确定复制进剪贴板\r\n" + rtn;
                 Clipboard.SetText(rtn);
             }
+            else
+            {
+                msg = "未匹配到log";
+            }
+            MessageBox.Show(msg);
         }
     }
 }
