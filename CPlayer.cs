@@ -10,16 +10,26 @@ namespace FFLogsPolice
 {
     internal class CPlayer
     {
+        string name;
+        string server;
         List<CParse> cParses = new List<CParse>();
         public CParse FindParse(int encounterID)
         {
+            CParse rtn = null;
+            double maxpercentile = 0;
             for (int i = 0; i < cParses.Count; i++)
             {
                 CParse par = cParses[i];
                 if (par.encounterID == encounterID)
-                    return par;
+                {
+                    if (par.percentile > maxpercentile)
+                    {
+                        rtn = par;
+                        maxpercentile = par.percentile;
+                    }
+                }
             }
-            return null;
+            return rtn;
         }
         public void ConvertFromJson(string json)
         {
@@ -40,7 +50,9 @@ namespace FFLogsPolice
                 bool iffind = false;
                 for (int j = 0;j < cParses.Count; j++)
                 {
-                    if (cParses[j].encounterID == parse.encounterID && cParses[j].difficulty == parse.difficulty)
+                    if (cParses[j].encounterID == parse.encounterID 
+                        && cParses[j].difficulty == parse.difficulty
+                        && cParses[j].spec == parse.spec)
                     {
                         iffind = true;
                         if (parse.percentile > cParses[j].percentile)

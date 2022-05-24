@@ -14,6 +14,7 @@ namespace FFLogsPolice
 {
     public partial class FFLogsPolice : Form
     {
+        CPlayer[] cPlayers = new CPlayer[8];
         public FFLogsPolice()
         {
             InitializeComponent();
@@ -49,6 +50,7 @@ namespace FFLogsPolice
             string json = streamReader.ReadToEnd();
             CPlayer player = new CPlayer();
             player.ConvertFromJson(json);
+            cPlayers[0] = player;
             CParse p1s = player.FindParse(78);
             if (p1s == null)
             {
@@ -56,7 +58,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player1raid1Box.Text = p1s.percentile.ToString("0");
+                player1raid1Box.Text = p1s.getspecpct();
             }
             CParse p2s = player.FindParse(79);
             if (p2s == null)
@@ -65,7 +67,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player1raid2Box.Text = p2s.percentile.ToString("0");
+                player1raid2Box.Text = p2s.getspecpct();
             }
             CParse p3s = player.FindParse(80);
             if (p3s == null)
@@ -74,7 +76,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player1raid3Box.Text = p3s.percentile.ToString("0");
+                player1raid3Box.Text = p3s.getspecpct();
             }
             CParse p4s_1 = player.FindParse(81);
             if (p4s_1 == null)
@@ -83,7 +85,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player1raid4Box.Text = p4s_1.percentile.ToString("0");
+                player1raid4Box.Text = p4s_1.getspecpct();
             }
             CParse p4s_2 = player.FindParse(82);
             if (p4s_2 == null)
@@ -92,7 +94,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player1raid5Box.Text = p4s_2.percentile.ToString("0");
+                player1raid5Box.Text = p4s_2.getspecpct();
             }
         }
         void SurveyPlayer2()
@@ -108,6 +110,7 @@ namespace FFLogsPolice
             string json = streamReader.ReadToEnd();
             CPlayer player = new CPlayer();
             player.ConvertFromJson(json);
+            cPlayers[1] = player;
             CParse p1s = player.FindParse(78);
             if (p1s == null)
             {
@@ -115,7 +118,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player2raid1Box.Text = p1s.percentile.ToString("0");
+                player2raid1Box.Text = p1s.getspecpct();
             }
             CParse p2s = player.FindParse(79);
             if (p2s == null)
@@ -124,7 +127,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player2raid2Box.Text = p2s.percentile.ToString("0");
+                player2raid2Box.Text = p2s.getspecpct();
             }
             CParse p3s = player.FindParse(80);
             if (p3s == null)
@@ -133,7 +136,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player2raid3Box.Text = p3s.percentile.ToString("0");
+                player2raid3Box.Text = p3s.getspecpct();
             }
             CParse p4s_1 = player.FindParse(81);
             if (p4s_1 == null)
@@ -142,7 +145,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player2raid4Box.Text = p4s_1.percentile.ToString("0");
+                player2raid4Box.Text = p4s_1.getspecpct();
             }
             CParse p4s_2 = player.FindParse(82);
             if (p4s_2 == null)
@@ -151,7 +154,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player2raid5Box.Text = p4s_2.percentile.ToString("0");
+                player2raid5Box.Text = p4s_2.getspecpct();
             }
         }
         void SurveyPlayer3()
@@ -167,6 +170,7 @@ namespace FFLogsPolice
             string json = streamReader.ReadToEnd();
             CPlayer player = new CPlayer();
             player.ConvertFromJson(json);
+            cPlayers[2] = player;
             CParse p1s = player.FindParse(78);
             if (p1s == null)
             {
@@ -174,7 +178,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player3raid1Box.Text = p1s.percentile.ToString("0");
+                player3raid1Box.Text = p1s.getspecpct();
             }
             CParse p2s = player.FindParse(79);
             if (p2s == null)
@@ -183,7 +187,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player3raid2Box.Text = p2s.percentile.ToString("0");
+                player3raid2Box.Text = p2s.getspecpct();
             }
             CParse p3s = player.FindParse(80);
             if (p3s == null)
@@ -192,7 +196,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player3raid3Box.Text = p3s.percentile.ToString("0");
+                player3raid3Box.Text = p3s.getspecpct();
             }
             CParse p4s_1 = player.FindParse(81);
             if (p4s_1 == null)
@@ -201,7 +205,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player3raid4Box.Text = p4s_1.percentile.ToString("0");
+                player3raid4Box.Text = p4s_1.getspecpct();
             }
             CParse p4s_2 = player.FindParse(82);
             if (p4s_2 == null)
@@ -210,7 +214,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player3raid5Box.Text = p4s_2.percentile.ToString("0");
+                player3raid5Box.Text = p4s_2.getspecpct();
             }
         }
         void SurveyPlayer4()
@@ -226,6 +230,7 @@ namespace FFLogsPolice
             string json = streamReader.ReadToEnd();
             CPlayer player = new CPlayer();
             player.ConvertFromJson(json);
+            cPlayers[3] = player;
             CParse p1s = player.FindParse(78);
             if (p1s == null)
             {
@@ -233,7 +238,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player4raid1Box.Text = p1s.percentile.ToString("0");
+                player4raid1Box.Text = p1s.getspecpct();
             }
             CParse p2s = player.FindParse(79);
             if (p2s == null)
@@ -242,7 +247,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player4raid2Box.Text = p2s.percentile.ToString("0");
+                player4raid2Box.Text = p2s.getspecpct();
             }
             CParse p3s = player.FindParse(80);
             if (p3s == null)
@@ -251,7 +256,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player4raid3Box.Text = p3s.percentile.ToString("0");
+                player4raid3Box.Text = p3s.getspecpct();
             }
             CParse p4s_1 = player.FindParse(81);
             if (p4s_1 == null)
@@ -260,7 +265,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player4raid4Box.Text = p4s_1.percentile.ToString("0");
+                player4raid4Box.Text = p4s_1.getspecpct();
             }
             CParse p4s_2 = player.FindParse(82);
             if (p4s_2 == null)
@@ -269,7 +274,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player4raid5Box.Text = p4s_2.percentile.ToString("0");
+                player4raid5Box.Text = p4s_2.getspecpct();
             }
         }
         void SurveyPlayer5()
@@ -285,6 +290,7 @@ namespace FFLogsPolice
             string json = streamReader.ReadToEnd();
             CPlayer player = new CPlayer();
             player.ConvertFromJson(json);
+            cPlayers[4] = player;
             CParse p1s = player.FindParse(78);
             if (p1s == null)
             {
@@ -292,7 +298,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player5raid1Box.Text = p1s.percentile.ToString("0");
+                player5raid1Box.Text = p1s.getspecpct();
             }
             CParse p2s = player.FindParse(79);
             if (p2s == null)
@@ -301,7 +307,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player5raid2Box.Text = p2s.percentile.ToString("0");
+                player5raid2Box.Text = p2s.getspecpct();
             }
             CParse p3s = player.FindParse(80);
             if (p3s == null)
@@ -310,7 +316,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player5raid3Box.Text = p3s.percentile.ToString("0");
+                player5raid3Box.Text = p3s.getspecpct();
             }
             CParse p4s_1 = player.FindParse(81);
             if (p4s_1 == null)
@@ -319,7 +325,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player5raid4Box.Text = p4s_1.percentile.ToString("0");
+                player5raid4Box.Text = p4s_1.getspecpct();
             }
             CParse p4s_2 = player.FindParse(82);
             if (p4s_2 == null)
@@ -328,7 +334,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player5raid5Box.Text = p4s_2.percentile.ToString("0");
+                player5raid5Box.Text = p4s_2.getspecpct();
             }
         }
         void SurveyPlayer6()
@@ -344,6 +350,7 @@ namespace FFLogsPolice
             string json = streamReader.ReadToEnd();
             CPlayer player = new CPlayer();
             player.ConvertFromJson(json);
+            cPlayers[5] = player;
             CParse p1s = player.FindParse(78);
             if (p1s == null)
             {
@@ -351,7 +358,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player6raid1Box.Text = p1s.percentile.ToString("0");
+                player6raid1Box.Text = p1s.getspecpct();
             }
             CParse p2s = player.FindParse(79);
             if (p2s == null)
@@ -360,7 +367,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player6raid2Box.Text = p2s.percentile.ToString("0");
+                player6raid2Box.Text = p2s.getspecpct();
             }
             CParse p3s = player.FindParse(80);
             if (p3s == null)
@@ -369,7 +376,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player6raid3Box.Text = p3s.percentile.ToString("0");
+                player6raid3Box.Text = p3s.getspecpct();
             }
             CParse p4s_1 = player.FindParse(81);
             if (p4s_1 == null)
@@ -378,7 +385,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player6raid4Box.Text = p4s_1.percentile.ToString("0");
+                player6raid4Box.Text = p4s_1.getspecpct();
             }
             CParse p4s_2 = player.FindParse(82);
             if (p4s_2 == null)
@@ -387,7 +394,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player6raid5Box.Text = p4s_2.percentile.ToString("0");
+                player6raid5Box.Text = p4s_2.getspecpct();
             }
         }
         void SurveyPlayer7()
@@ -403,6 +410,7 @@ namespace FFLogsPolice
             string json = streamReader.ReadToEnd();
             CPlayer player = new CPlayer();
             player.ConvertFromJson(json);
+            cPlayers[6] = player;
             CParse p1s = player.FindParse(78);
             if (p1s == null)
             {
@@ -410,7 +418,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player7raid1Box.Text = p1s.percentile.ToString("0");
+                player7raid1Box.Text = p1s.getspecpct();
             }
             CParse p2s = player.FindParse(79);
             if (p2s == null)
@@ -419,7 +427,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player7raid2Box.Text = p2s.percentile.ToString("0");
+                player7raid2Box.Text = p2s.getspecpct();
             }
             CParse p3s = player.FindParse(80);
             if (p3s == null)
@@ -428,7 +436,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player7raid3Box.Text = p3s.percentile.ToString("0");
+                player7raid3Box.Text = p3s.getspecpct();
             }
             CParse p4s_1 = player.FindParse(81);
             if (p4s_1 == null)
@@ -437,7 +445,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player7raid4Box.Text = p4s_1.percentile.ToString("0");
+                player7raid4Box.Text = p4s_1.getspecpct();
             }
             CParse p4s_2 = player.FindParse(82);
             if (p4s_2 == null)
@@ -446,7 +454,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player7raid5Box.Text = p4s_2.percentile.ToString("0");
+                player7raid5Box.Text = p4s_2.getspecpct();
             }
         }
         void SurveyPlayer8()
@@ -462,6 +470,7 @@ namespace FFLogsPolice
             string json = streamReader.ReadToEnd();
             CPlayer player = new CPlayer();
             player.ConvertFromJson(json);
+            cPlayers[7] = player;
             CParse p1s = player.FindParse(78);
             if (p1s == null)
             {
@@ -469,7 +478,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player8raid1Box.Text = p1s.percentile.ToString("0");
+                player8raid1Box.Text = p1s.getspecpct();
             }
             CParse p2s = player.FindParse(79);
             if (p2s == null)
@@ -478,7 +487,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player8raid2Box.Text = p2s.percentile.ToString("0");
+                player8raid2Box.Text = p2s.getspecpct();
             }
             CParse p3s = player.FindParse(80);
             if (p3s == null)
@@ -487,7 +496,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player8raid3Box.Text = p3s.percentile.ToString("0");
+                player8raid3Box.Text = p3s.getspecpct();
             }
             CParse p4s_1 = player.FindParse(81);
             if (p4s_1 == null)
@@ -496,7 +505,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player8raid4Box.Text = p4s_1.percentile.ToString("0");
+                player8raid4Box.Text = p4s_1.getspecpct();
             }
             CParse p4s_2 = player.FindParse(82);
             if (p4s_2 == null)
@@ -505,7 +514,7 @@ namespace FFLogsPolice
             }
             else
             {
-                player8raid5Box.Text = p4s_2.percentile.ToString("0");
+                player8raid5Box.Text = p4s_2.getspecpct();
             }
         }
 
@@ -581,54 +590,54 @@ namespace FFLogsPolice
         }
         private void Macro_Click(object sender, EventArgs e)
         {
-            string rtn1 = "/p " + PlayerBox.Text + "@" + ServerBox.Text 
-                + " P1S:" + player1raid1Box.Text 
-                + " P2S:" + player1raid2Box.Text 
-                + " P3S:" + player1raid3Box.Text 
-                + " P4S门神:" + player1raid4Box.Text 
-                + " P4S本体:" + player1raid5Box.Text + "\r\n";
-            string rtn2 = "/p " + Player2Box.Text + "@" + Server2Box.Text 
-                + " P1S:" + player2raid1Box.Text 
-                + " P2S:" + player2raid2Box.Text 
-                + " P3S:" + player2raid3Box.Text 
-                + " P4S门神:" + player2raid4Box.Text 
-                + " P4S本体:" + player2raid5Box.Text + "\r\n";
-            string rtn3 = "/p " + Player3Box.Text + "@" + Server3Box.Text 
-                + " P1S:" + player3raid1Box.Text 
-                + " P2S:" + player3raid2Box.Text 
-                + " P3S:" + player3raid3Box.Text 
-                + " P4S门神4S:" + player3raid4Box.Text 
-                + " P4S本体:" + player3raid5Box.Text + "\r\n";
-            string rtn4 = "/p " + Player4Box.Text + "@" + Server4Box.Text 
-                + " P1S:" + player4raid1Box.Text 
-                + " P2S:" + player4raid2Box.Text 
-                + " P3S:" + player4raid3Box.Text 
-                + " P4S门神:" + player4raid4Box.Text 
-                + " P4S本体:" + player4raid5Box.Text + "\r\n";
-            string rtn5 = "/p " + Player5Box.Text + "@" + Server5Box.Text 
-                + " P1S:" + player5raid1Box.Text 
-                + " P2S:" + player5raid2Box.Text 
-                + " P3S:" + player5raid3Box.Text 
-                + " P4S门神:" + player5raid4Box.Text 
-                + " P4S本体:" + player5raid5Box.Text + "\r\n";
-            string rtn6 = "/p " + Player6Box.Text + "@" + Server6Box.Text 
-                + " P1S:" + player6raid1Box.Text 
-                + " P2S:" + player6raid2Box.Text 
-                + " P3S:" + player6raid3Box.Text 
-                + " P4S门神:" + player6raid4Box.Text 
-                + " P4S本体:" + player6raid5Box.Text + "\r\n";
-            string rtn7 = "/p " + Player7Box.Text + "@" + Server7Box.Text 
-                + " P1S:" + player7raid1Box.Text 
-                + " P2S:" + player7raid2Box.Text 
-                + " P3S:" + player7raid3Box.Text 
-                + " P4S门神:" + player7raid4Box.Text 
-                + " P4S本体:" + player7raid5Box.Text + "\r\n";
-            string rtn8 = "/p " + Player8Box.Text + "@" + Server8Box.Text 
-                + " P1S:" + player8raid1Box.Text 
-                + " P2S:" + player8raid2Box.Text 
-                + " P3S:" + player8raid3Box.Text 
-                + " P4S门神:" + player8raid4Box.Text 
-                + " P4S本体:" + player8raid5Box.Text + "\r\n";
+            string rtn1 = "/p " + PlayerBox.Text + "@" + ServerBox.Text
+                + " P1S:" + cPlayers[0].FindParse(78).getpercentile()
+                + " P2S:" + cPlayers[0].FindParse(79).getpercentile()
+                + " P3S:" + cPlayers[0].FindParse(80).getpercentile()
+                + " P4S门神:" + cPlayers[0].FindParse(81).getpercentile()
+                + " P4S本体:" + cPlayers[0].FindParse(82).getpercentile() + "\r\n";
+            string rtn2 = "/p " + Player2Box.Text + "@" + Server2Box.Text
+                + " P1S:" + cPlayers[0].FindParse(78).getpercentile()
+                + " P2S:" + cPlayers[0].FindParse(79).getpercentile()
+                + " P3S:" + cPlayers[0].FindParse(80).getpercentile()
+                + " P4S门神:" + cPlayers[0].FindParse(81).getpercentile()
+                + " P4S本体:" + cPlayers[0].FindParse(82).getpercentile() + "\r\n";
+            string rtn3 = "/p " + Player3Box.Text + "@" + Server3Box.Text
+                + " P1S:" + cPlayers[0].FindParse(78).getpercentile()
+                + " P2S:" + cPlayers[0].FindParse(79).getpercentile()
+                + " P3S:" + cPlayers[0].FindParse(80).getpercentile()
+                + " P4S门神:" + cPlayers[0].FindParse(81).getpercentile()
+                + " P4S本体:" + cPlayers[0].FindParse(82).getpercentile() + "\r\n";
+            string rtn4 = "/p " + Player4Box.Text + "@" + Server4Box.Text
+                + " P1S:" + cPlayers[0].FindParse(78).getpercentile()
+                + " P2S:" + cPlayers[0].FindParse(79).getpercentile()
+                + " P3S:" + cPlayers[0].FindParse(80).getpercentile()
+                + " P4S门神:" + cPlayers[0].FindParse(81).getpercentile()
+                + " P4S本体:" + cPlayers[0].FindParse(82).getpercentile() + "\r\n";
+            string rtn5 = "/p " + Player5Box.Text + "@" + Server5Box.Text
+                + " P1S:" + cPlayers[0].FindParse(78).getpercentile()
+                + " P2S:" + cPlayers[0].FindParse(79).getpercentile()
+                + " P3S:" + cPlayers[0].FindParse(80).getpercentile()
+                + " P4S门神:" + cPlayers[0].FindParse(81).getpercentile()
+                + " P4S本体:" + cPlayers[0].FindParse(82).getpercentile() + "\r\n";
+            string rtn6 = "/p " + Player6Box.Text + "@" + Server6Box.Text
+                + " P1S:" + cPlayers[0].FindParse(78).getpercentile()
+                + " P2S:" + cPlayers[0].FindParse(79).getpercentile()
+                + " P3S:" + cPlayers[0].FindParse(80).getpercentile()
+                + " P4S门神:" + cPlayers[0].FindParse(81).getpercentile()
+                + " P4S本体:" + cPlayers[0].FindParse(82).getpercentile() + "\r\n";
+            string rtn7 = "/p " + Player7Box.Text + "@" + Server7Box.Text
+                + " P1S:" + cPlayers[0].FindParse(78).getpercentile()
+                + " P2S:" + cPlayers[0].FindParse(79).getpercentile()
+                + " P3S:" + cPlayers[0].FindParse(80).getpercentile()
+                + " P4S门神:" + cPlayers[0].FindParse(81).getpercentile()
+                + " P4S本体:" + cPlayers[0].FindParse(82).getpercentile() + "\r\n";
+            string rtn8 = "/p " + Player8Box.Text + "@" + Server8Box.Text
+                + " P1S:" + cPlayers[0].FindParse(78).getpercentile()
+                + " P2S:" + cPlayers[0].FindParse(79).getpercentile()
+                + " P3S:" + cPlayers[0].FindParse(80).getpercentile()
+                + " P4S门神:" + cPlayers[0].FindParse(81).getpercentile()
+                + " P4S本体:" + cPlayers[0].FindParse(82).getpercentile() + "\r\n";
             string rtn = "/p FFLogs快查结果<se.1>\r\n" + rtn1 + rtn2 + rtn3 + rtn4 + rtn5 + rtn6 + rtn7 + rtn8;
             string msg = "宏已完成，点击确定复制进剪贴板\r\n" + rtn;
             MessageBox.Show(msg);
