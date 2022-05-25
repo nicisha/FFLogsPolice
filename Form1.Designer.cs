@@ -1450,7 +1450,7 @@
             this.TeamBox.Name = "TeamBox";
             this.TeamBox.Size = new System.Drawing.Size(584, 25);
             this.TeamBox.TabIndex = 6;
-            this.TeamBox.UseSystemPasswordChar = true;
+            this.TeamBox.TextChanged += new System.EventHandler(this.TeamBox_TextChanged);
             // 
             // label66
             // 

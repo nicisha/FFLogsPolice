@@ -16,25 +16,13 @@ namespace FFLogsPolice
     {
         public static string FFLogsV1Key;
         CPlayer[] cPlayers = new CPlayer[8];
+        string[] ServerList = {"白银乡","白金幻象","神拳痕","潮风亭","旅人栈桥","拂晓之间","龙巢神殿","梦羽宝境"
+                ,"红玉海","神意之地","拉诺西亚","幻影群岛","萌芽池","宇宙和音","沃仙曦染","晨曦王座"
+                ,"紫水栈桥","延夏","静语庄园","摩杜纳","海猫茶屋","柔风海湾","琥珀原"
+                ,"水晶塔","银泪湖","太阳海岸","伊修加德","红茶川"};
         public FFLogsPolice()
         {
             InitializeComponent();
-            PlayerBox.Text = "楠木灯";
-            ServerBox.Text = "神拳痕";
-            Player2Box.Text = "雨茫茫";
-            Server2Box.Text = "潮风亭";
-            Player3Box.Text = "蓝花楹";
-            Server3Box.Text = "旅人栈桥";
-            Player4Box.Text = "白筱曦";
-            Server4Box.Text = "神拳痕";
-            Player5Box.Text = "鹭宫";
-            Server5Box.Text = "神拳痕";
-            Player6Box.Text = "一位小朋友";
-            Server6Box.Text = "神拳痕";
-            Player7Box.Text = "澄穆";
-            Server7Box.Text = "神拳痕";
-            Player8Box.Text = "伊安娜乔苏拿";
-            Server8Box.Text = "神拳痕";
             StreamReader keyreader = new StreamReader("key.ini");
             FFLogsV1Key = keyreader.ReadLine();
             KeyBox.Text = FFLogsV1Key;
@@ -151,7 +139,82 @@ namespace FFLogsPolice
             player8raid4Box.Text = player.FindParseAndGetSpecPct(81);
             player8raid5Box.Text = player.FindParseAndGetSpecPct(82);
         }
-
+        void GetNamesFromTeamBox()
+        {
+            string teamstr = TeamBox.Text;
+            if (teamstr == null)
+                return;
+            if (teamstr.Length == 0)
+                return;
+            string[] names = teamstr.Split(':');
+            int count = names.Count();
+            if (count >= 1)
+            {
+                string[] strs = GetNameAndServer(names[0]);
+                PlayerBox.Text = strs[0];
+                ServerBox.Text = strs[1];
+            }
+            if (count >= 2)
+            {
+                string[] strs = GetNameAndServer(names[1]);
+                Player2Box.Text = strs[0];
+                Server2Box.Text = strs[1];
+            }
+            if (count >= 3)
+            {
+                string[] strs = GetNameAndServer(names[2]);
+                Player3Box.Text = strs[0];
+                Server3Box.Text = strs[1];
+            }
+            if (count >= 4)
+            {
+                string[] strs = GetNameAndServer(names[3]);
+                Player4Box.Text = strs[0];
+                Server4Box.Text = strs[1];
+            }
+            if (count >= 5)
+            {
+                string[] strs = GetNameAndServer(names[4]);
+                Player5Box.Text = strs[0];
+                Server5Box.Text = strs[1];
+            }
+            if (count >= 6)
+            {
+                string[] strs = GetNameAndServer(names[5]);
+                Player6Box.Text = strs[0];
+                Server6Box.Text = strs[1];
+            }
+            if (count >= 7)
+            {
+                string[] strs = GetNameAndServer(names[6]);
+                Player7Box.Text = strs[0];
+                Server7Box.Text = strs[1];
+            }
+            if (count >= 8)
+            {
+                string[] strs = GetNameAndServer(names[7]);
+                Player8Box.Text = strs[0];
+                Server8Box.Text = strs[1];
+            }
+        }
+        string[] GetNameAndServer(string nameserver)
+        {
+            string name = nameserver;
+            string[] rtn = { "", "" };
+            for (int i=0;i<ServerList.Count();i++)
+            {
+                if (name.Contains(ServerList[i]))
+                {
+                    int flag = name.LastIndexOf(ServerList[i]);
+                    name = name.Remove(flag);
+                    rtn[0] = name;
+                    rtn[1] = ServerList[i];
+                    return rtn;
+                }
+            }
+            rtn[0] = name;
+            return rtn;
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             if (ServerBox.Text.Length == 0)
@@ -255,6 +318,11 @@ namespace FFLogsPolice
                 msg = "未匹配到log";
             }
             MessageBox.Show(msg);
+        }
+
+        private void TeamBox_TextChanged(object sender, EventArgs e)
+        {
+            GetNamesFromTeamBox();
         }
     }
 }
