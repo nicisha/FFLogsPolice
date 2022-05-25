@@ -23,9 +23,6 @@ namespace FFLogsPolice
         public FFLogsPolice()
         {
             InitializeComponent();
-            StreamReader keyreader = new StreamReader("key.ini");
-            FFLogsV1Key = keyreader.ReadLine();
-            KeyBox.Text = FFLogsV1Key;
         }
         void SurveyPlayer()
         {
@@ -217,6 +214,7 @@ namespace FFLogsPolice
         }
         private void button1_Click(object sender, EventArgs e)
         {
+            FFLogsV1Key = KeyBox.Text;
             if (ServerBox.Text.Length == 0)
                 MessageBox.Show("请填写您的角色所在服务器");
             else
@@ -323,6 +321,25 @@ namespace FFLogsPolice
         private void TeamBox_TextChanged(object sender, EventArgs e)
         {
             GetNamesFromTeamBox();
+        }
+
+        private void FFLogsPolice_Load(object sender, EventArgs e)
+        {
+            StreamReader keyreader = new StreamReader("key.ini");
+            FFLogsV1Key = keyreader.ReadLine();
+            if (FFLogsV1Key.Contains("请"))
+            {
+                FFLogsV1Key = "";
+                return;
+            }
+            KeyBox.Text = FFLogsV1Key;
+            keyreader.Close();
+        }
+        private void FFLogsPolice_FormClosing(object sender, EventArgs e)
+        {
+            StreamWriter keywriter = new StreamWriter("key.ini");
+            keywriter.WriteLine(FFLogsV1Key);
+            keywriter.Close();
         }
     }
 }

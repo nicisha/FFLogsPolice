@@ -1616,6 +1616,8 @@
             this.Controls.Add(this.button1);
             this.Name = "FFLogsPolice";
             this.Text = "FFLogsPolice";
+            this.Load += new System.EventHandler(this.FFLogsPolice_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FFLogsPolice_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 
