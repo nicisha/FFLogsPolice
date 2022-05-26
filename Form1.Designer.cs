@@ -156,6 +156,10 @@
             this.label66 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.MacroButton = new System.Windows.Forms.Button();
+            this.label67 = new System.Windows.Forms.Label();
+            this.PortBox = new System.Windows.Forms.TextBox();
+            this.PortStartButton = new System.Windows.Forms.Button();
+            this.PortStopButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -1481,11 +1485,51 @@
             this.MacroButton.UseVisualStyleBackColor = true;
             this.MacroButton.Click += new System.EventHandler(this.Macro_Click);
             // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.Location = new System.Drawing.Point(808, 28);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(37, 15);
+            this.label67.TabIndex = 12;
+            this.label67.Text = "端口";
+            // 
+            // PortBox
+            // 
+            this.PortBox.Location = new System.Drawing.Point(861, 23);
+            this.PortBox.Name = "PortBox";
+            this.PortBox.Size = new System.Drawing.Size(100, 25);
+            this.PortBox.TabIndex = 13;
+            // 
+            // PortStartButton
+            // 
+            this.PortStartButton.Location = new System.Drawing.Point(994, 23);
+            this.PortStartButton.Name = "PortStartButton";
+            this.PortStartButton.Size = new System.Drawing.Size(75, 25);
+            this.PortStartButton.TabIndex = 14;
+            this.PortStartButton.Text = "启动";
+            this.PortStartButton.UseVisualStyleBackColor = true;
+            this.PortStartButton.Click += new System.EventHandler(this.PortStartButton_Click);
+            // 
+            // PortStopButton
+            // 
+            this.PortStopButton.Location = new System.Drawing.Point(1109, 23);
+            this.PortStopButton.Name = "PortStopButton";
+            this.PortStopButton.Size = new System.Drawing.Size(75, 25);
+            this.PortStopButton.TabIndex = 15;
+            this.PortStopButton.Text = "停止";
+            this.PortStopButton.UseVisualStyleBackColor = true;
+            this.PortStopButton.Click += new System.EventHandler(this.PortStopButton_Click);
+            // 
             // FFLogsPolice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1533, 607);
+            this.Controls.Add(this.PortStopButton);
+            this.Controls.Add(this.PortStartButton);
+            this.Controls.Add(this.PortBox);
+            this.Controls.Add(this.label67);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label66);
             this.Controls.Add(this.label65);
@@ -1616,8 +1660,8 @@
             this.Controls.Add(this.button1);
             this.Name = "FFLogsPolice";
             this.Text = "FFLogsPolice";
-            this.Load += new System.EventHandler(this.FFLogsPolice_Load);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FFLogsPolice_FormClosing);
+            this.Load += new System.EventHandler(this.FFLogsPolice_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1749,10 +1793,14 @@
         private System.Windows.Forms.Label label64;
         private System.Windows.Forms.TextBox player8raid5Box;
         private System.Windows.Forms.Label label65;
-        private System.Windows.Forms.TextBox TeamBox;
+        public System.Windows.Forms.TextBox TeamBox;
         private System.Windows.Forms.Label label66;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button MacroButton;
+        private System.Windows.Forms.Label label67;
+        private System.Windows.Forms.TextBox PortBox;
+        private System.Windows.Forms.Button PortStartButton;
+        private System.Windows.Forms.Button PortStopButton;
     }
 }
 

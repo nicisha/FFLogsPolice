@@ -15,7 +15,10 @@ namespace FFLogsPolice
     public partial class FFLogsPolice : Form
     {
         public static string FFLogsV1Key;
+        public static string Port = "4017";
+        public static string TeamStr = "";
         CPlayer[] cPlayers = new CPlayer[8];
+        private HttpListener _listener;
         string[] ServerList = {"白银乡","白金幻象","神拳痕","潮风亭","旅人栈桥","拂晓之间","龙巢神殿","梦羽宝境"
                 ,"红玉海","神意之地","拉诺西亚","幻影群岛","萌芽池","宇宙和音","沃仙曦染","晨曦王座"
                 ,"紫水栈桥","延夏","静语庄园","摩杜纳","海猫茶屋","柔风海湾","琥珀原"
@@ -135,6 +138,11 @@ namespace FFLogsPolice
             player8raid3Box.Text = player.FindParseAndGetSpecPct(80);
             player8raid4Box.Text = player.FindParseAndGetSpecPct(81);
             player8raid5Box.Text = player.FindParseAndGetSpecPct(82);
+        }
+        public void ChangeTeamBox(string teamstr)
+        {
+            TeamBox.Text = teamstr;
+            GetNamesFromTeamBox();
         }
         void GetNamesFromTeamBox()
         {
@@ -332,14 +340,70 @@ namespace FFLogsPolice
                 FFLogsV1Key = "";
                 return;
             }
-            KeyBox.Text = FFLogsV1Key;
             keyreader.Close();
+            KeyBox.Text = FFLogsV1Key;
+            PortBox.Text = Port;
+            PortStopButton.Enabled = false;
+            PortStartButton.Enabled = true;
         }
         private void FFLogsPolice_FormClosing(object sender, EventArgs e)
         {
             StreamWriter keywriter = new StreamWriter("key.ini");
             keywriter.WriteLine(FFLogsV1Key);
             keywriter.Close();
+        }
+
+        private void PortStartButton_Click(object sender, EventArgs e)
+        {
+            //获取监听地址
+            Port = PortBox.Text;
+            Port = int.Parse(Port).ToString();
+            if (Port == null)
+                return;
+            if (Port == "")
+                return;
+            string ipAddress1 = "http://127.0.0.1:" + Port + "/";
+
+            // 注意前缀必须以 / 正斜杠结尾
+            string[] prefixes = new string[] { ipAddress1 };
+            HttpListenerServer httpListenerServer = new HttpListenerServer();
+            try
+            {
+                // 检查系统是否支持
+                if (!HttpListener.IsSupported)
+                {
+                    throw new ArgumentException("使用 HttpListener 必须为 Windows XP SP2 或 Server 2003 以上系统！");
+                }
+                else
+                {
+                    if (prefixes == null || prefixes.Length == 0)
+                        throw new ArgumentException("缺少地址参数");
+                    else
+                    {
+                        //启动监听 // 创建监听器.
+                        _listener = new HttpListener();
+                        httpListenerServer.Start(_listener, prefixes);
+                        httpListenerServer.ConnectMainForm(this);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            PortStopButton.Enabled = true;
+            PortStartButton.Enabled = false;
+        }
+
+        private void PortStopButton_Click(object sender, EventArgs e)
+        {
+            if (_listener != null)
+            {
+                _listener.Close();
+            }
+            PortStopButton.Enabled = false;
+            PortStartButton.Enabled = true;
         }
     }
 }
