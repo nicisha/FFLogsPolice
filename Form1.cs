@@ -144,6 +144,19 @@ namespace FFLogsPolice
             TeamBox.Text = teamstr;
             GetNamesFromTeamBox();
             SurveyAll();
+            if (NamazuBox.Checked == true)
+            {
+                string namazuport = NamazuPortBox.Text;
+                if (namazuport == null)
+                    return;
+                if (namazuport == "")
+                    return;
+                int port = int.Parse(namazuport);
+                if (port < 0 || port > 65535)
+                    return;
+                string url = "http//127.0.0.1:" + port.ToString() + "/command";
+                PostUrl(url, GetMacro());
+            }
         }
         void GetNamesFromTeamBox()
         {
@@ -276,6 +289,28 @@ namespace FFLogsPolice
                 }
             }
         }
+        private string PostUrl(string url, string postdata)
+        {
+            string result = "";
+            HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
+            req.Method = "POST";
+            req.Timeout = 800;
+            req.ContentType = "application/json";
+            byte[] data = Encoding.UTF8.GetBytes(postdata);
+            req.ContentLength = data.Length;
+            using (Stream reqStream = req.GetRequestStream())
+            {
+                reqStream.Write(data, 0, data.Length);
+                reqStream.Close();
+            }
+            HttpWebResponse resp = (HttpWebResponse)req.GetResponse();
+            Stream stream = resp.GetResponseStream();
+            using (StreamReader reader = new StreamReader(stream, Encoding.UTF8) )
+            {
+                result = reader.ReadToEnd();
+            }
+            return result;
+         }
         private void button1_Click(object sender, EventArgs e)
         {
             SurveyAll();
@@ -295,6 +330,30 @@ namespace FFLogsPolice
         {
             Clipboard.SetText("/e <1>:<2>:<3>:<4>:<5>:<6>:<7>:<8>");
             MessageBox.Show("复制完成");
+        }
+        private string GetMacro()
+        {
+            string rtn = "/p FFLogs快查结果<se.1>";
+            int playercount = 0;
+            for (int i = 0; i < cPlayers.Count(); i++)
+            {
+                if (cPlayers[i] == null)
+                    continue;
+                if (cPlayers[i].name == null)
+                    continue;
+                if (cPlayers[i].name.Length > 0)
+                {
+                    string str = "\r\n" + "/p " + cPlayers[i].name + "@" + cPlayers[i].server
+                        + " P1S:" + cPlayers[i].FindParseAndGetPercentile(78)
+                        + " P2S:" + cPlayers[i].FindParseAndGetPercentile(79)
+                        + " P3S:" + cPlayers[i].FindParseAndGetPercentile(80)
+                        + " P4S门神:" + cPlayers[i].FindParseAndGetPercentile(81)
+                        + " P4S本体:" + cPlayers[i].FindParseAndGetPercentile(82);
+                    rtn += str;
+                    playercount++;
+                }
+            }
+            return rtn;
         }
         private void Macro_Click(object sender, EventArgs e)
         {
@@ -348,6 +407,7 @@ namespace FFLogsPolice
             keyreader.Close();
             KeyBox.Text = FFLogsV1Key;
             PortBox.Text = Port;
+            NamazuPortBox.Text = "2019";
             PortStopButton.Enabled = false;
             PortStartButton.Enabled = true;
         }

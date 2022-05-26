@@ -160,11 +160,14 @@
             this.PortBox = new System.Windows.Forms.TextBox();
             this.PortStartButton = new System.Windows.Forms.Button();
             this.PortStopButton = new System.Windows.Forms.Button();
+            this.NamazuBox = new System.Windows.Forms.CheckBox();
+            this.label68 = new System.Windows.Forms.Label();
+            this.NamazuPortBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(808, 73);
+            this.button1.Location = new System.Drawing.Point(779, 73);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(92, 25);
             this.button1.TabIndex = 0;
@@ -1464,6 +1467,7 @@
             this.label66.Size = new System.Drawing.Size(482, 15);
             this.label66.TabIndex = 10;
             this.label66.Text = "注：游戏内输入/e <1>:<2>:<3>:<4>:<5>:<6>:<7>:<8> 获取小队列表";
+            this.label66.Visible = false;
             // 
             // button2
             // 
@@ -1473,11 +1477,12 @@
             this.button2.TabIndex = 11;
             this.button2.Text = "复制";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Visible = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // MacroButton
             // 
-            this.MacroButton.Location = new System.Drawing.Point(947, 73);
+            this.MacroButton.Location = new System.Drawing.Point(1245, 71);
             this.MacroButton.Name = "MacroButton";
             this.MacroButton.Size = new System.Drawing.Size(92, 25);
             this.MacroButton.TabIndex = 0;
@@ -1488,7 +1493,7 @@
             // label67
             // 
             this.label67.AutoSize = true;
-            this.label67.Location = new System.Drawing.Point(808, 28);
+            this.label67.Location = new System.Drawing.Point(944, 28);
             this.label67.Name = "label67";
             this.label67.Size = new System.Drawing.Size(37, 15);
             this.label67.TabIndex = 12;
@@ -1496,14 +1501,14 @@
             // 
             // PortBox
             // 
-            this.PortBox.Location = new System.Drawing.Point(861, 23);
+            this.PortBox.Location = new System.Drawing.Point(997, 23);
             this.PortBox.Name = "PortBox";
             this.PortBox.Size = new System.Drawing.Size(100, 25);
             this.PortBox.TabIndex = 13;
             // 
             // PortStartButton
             // 
-            this.PortStartButton.Location = new System.Drawing.Point(994, 23);
+            this.PortStartButton.Location = new System.Drawing.Point(1130, 23);
             this.PortStartButton.Name = "PortStartButton";
             this.PortStartButton.Size = new System.Drawing.Size(75, 25);
             this.PortStartButton.TabIndex = 14;
@@ -1513,7 +1518,7 @@
             // 
             // PortStopButton
             // 
-            this.PortStopButton.Location = new System.Drawing.Point(1109, 23);
+            this.PortStopButton.Location = new System.Drawing.Point(1245, 23);
             this.PortStopButton.Name = "PortStopButton";
             this.PortStopButton.Size = new System.Drawing.Size(75, 25);
             this.PortStopButton.TabIndex = 15;
@@ -1521,11 +1526,40 @@
             this.PortStopButton.UseVisualStyleBackColor = true;
             this.PortStopButton.Click += new System.EventHandler(this.PortStopButton_Click);
             // 
+            // NamazuBox
+            // 
+            this.NamazuBox.AutoSize = true;
+            this.NamazuBox.Location = new System.Drawing.Point(1118, 77);
+            this.NamazuBox.Name = "NamazuBox";
+            this.NamazuBox.Size = new System.Drawing.Size(89, 19);
+            this.NamazuBox.TabIndex = 16;
+            this.NamazuBox.Text = "自动发送";
+            this.NamazuBox.UseVisualStyleBackColor = true;
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Location = new System.Drawing.Point(877, 78);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(112, 15);
+            this.label68.TabIndex = 17;
+            this.label68.Text = "鲶鱼精邮差端口";
+            // 
+            // NamazuPortBox
+            // 
+            this.NamazuPortBox.Location = new System.Drawing.Point(996, 73);
+            this.NamazuPortBox.Name = "NamazuPortBox";
+            this.NamazuPortBox.Size = new System.Drawing.Size(100, 25);
+            this.NamazuPortBox.TabIndex = 18;
+            // 
             // FFLogsPolice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1533, 607);
+            this.Controls.Add(this.NamazuPortBox);
+            this.Controls.Add(this.label68);
+            this.Controls.Add(this.NamazuBox);
             this.Controls.Add(this.PortStopButton);
             this.Controls.Add(this.PortStartButton);
             this.Controls.Add(this.PortBox);
@@ -1801,6 +1835,9 @@
         private System.Windows.Forms.TextBox PortBox;
         private System.Windows.Forms.Button PortStartButton;
         private System.Windows.Forms.Button PortStopButton;
+        private System.Windows.Forms.CheckBox NamazuBox;
+        private System.Windows.Forms.Label label68;
+        private System.Windows.Forms.TextBox NamazuPortBox;
     }
 }
 
