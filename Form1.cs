@@ -143,6 +143,7 @@ namespace FFLogsPolice
         {
             TeamBox.Text = teamstr;
             GetNamesFromTeamBox();
+            SurveyAll();
         }
         void GetNamesFromTeamBox()
         {
@@ -220,7 +221,7 @@ namespace FFLogsPolice
             rtn[0] = name;
             return rtn;
         }
-        private void button1_Click(object sender, EventArgs e)
+        private void SurveyAll()
         {
             FFLogsV1Key = KeyBox.Text;
             if (ServerBox.Text.Length == 0)
@@ -274,6 +275,10 @@ namespace FFLogsPolice
                     SurveyPlayer8();
                 }
             }
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SurveyAll();
         }
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
