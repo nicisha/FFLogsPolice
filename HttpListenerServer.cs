@@ -81,31 +81,31 @@ namespace FFLogsPolice
 
                     #region 构造Response响应
 
-                    HttpListenerResponse response = context.Response; 
-                    response.StatusCode = (int)HttpStatusCode.OK;
-                    response.ContentType = "application/json;charset=UTF-8";
-                    response.ContentEncoding = Encoding.UTF8;
-                    response.AppendHeader("Content-Type", "application/json;charset=UTF-8");
+                    //HttpListenerResponse response = context.Response; 
+                    //response.StatusCode = (int)HttpStatusCode.OK;
+                    //response.ContentType = "application/json;charset=UTF-8";
+                    //response.ContentEncoding = Encoding.UTF8;
+                    //response.AppendHeader("Content-Type", "application/json;charset=UTF-8");
 
                     //模拟返回的数据：Json格式
-                    var abcOject = new
-                    {
-                        code = "200",
-                        description = "success",
-                        data = "time=" + DateTime.Now
-                    };
-                    string responseString = JsonConvert.SerializeObject(abcOject,
-                        new JsonSerializerSettings()
-                        {
-                            StringEscapeHandling = StringEscapeHandling.EscapeNonAscii
-                        });
+                    //var abcOject = new
+                    //{
+                    //    code = "200",
+                    //    description = "success",
+                    //    data = "time=" + DateTime.Now
+                    //};
+                    //string responseString = JsonConvert.SerializeObject(abcOject,
+                    //    new JsonSerializerSettings()
+                    //    {
+                    //        StringEscapeHandling = StringEscapeHandling.EscapeNonAscii
+                    //    });
 
-                    using (StreamWriter writer = new StreamWriter(response.OutputStream, Encoding.UTF8))
-                    {
-                        writer.Write(responseString);
-                        writer.Close();
-                        response.Close();
-                    }
+                    //using (StreamWriter writer = new StreamWriter(response.OutputStream, Encoding.UTF8))
+                    //{
+                    //    writer.Write(responseString);
+                    //    writer.Close();
+                    //    response.Close();
+                    //}
 
                     #endregion
 

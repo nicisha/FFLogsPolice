@@ -268,7 +268,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(179, 185);
+            this.label4.Location = new System.Drawing.Point(182, 185);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(31, 15);
             this.label4.TabIndex = 8;
@@ -276,7 +276,7 @@
             // 
             // player1raid1Box
             // 
-            this.player1raid1Box.Location = new System.Drawing.Point(243, 185);
+            this.player1raid1Box.Location = new System.Drawing.Point(246, 185);
             this.player1raid1Box.Name = "player1raid1Box";
             this.player1raid1Box.ReadOnly = true;
             this.player1raid1Box.Size = new System.Drawing.Size(100, 25);
@@ -285,7 +285,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(179, 216);
+            this.label5.Location = new System.Drawing.Point(182, 216);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(31, 15);
             this.label5.TabIndex = 8;
@@ -293,7 +293,7 @@
             // 
             // player1raid2Box
             // 
-            this.player1raid2Box.Location = new System.Drawing.Point(243, 216);
+            this.player1raid2Box.Location = new System.Drawing.Point(246, 216);
             this.player1raid2Box.Name = "player1raid2Box";
             this.player1raid2Box.ReadOnly = true;
             this.player1raid2Box.Size = new System.Drawing.Size(100, 25);
@@ -302,7 +302,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(179, 247);
+            this.label6.Location = new System.Drawing.Point(182, 247);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(31, 15);
             this.label6.TabIndex = 8;
@@ -310,7 +310,7 @@
             // 
             // player1raid3Box
             // 
-            this.player1raid3Box.Location = new System.Drawing.Point(243, 247);
+            this.player1raid3Box.Location = new System.Drawing.Point(246, 247);
             this.player1raid3Box.Name = "player1raid3Box";
             this.player1raid3Box.ReadOnly = true;
             this.player1raid3Box.Size = new System.Drawing.Size(100, 25);
@@ -319,7 +319,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(179, 278);
+            this.label7.Location = new System.Drawing.Point(182, 278);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(47, 15);
             this.label7.TabIndex = 8;
@@ -327,7 +327,7 @@
             // 
             // player1raid4Box
             // 
-            this.player1raid4Box.Location = new System.Drawing.Point(243, 278);
+            this.player1raid4Box.Location = new System.Drawing.Point(246, 278);
             this.player1raid4Box.Name = "player1raid4Box";
             this.player1raid4Box.ReadOnly = true;
             this.player1raid4Box.Size = new System.Drawing.Size(100, 25);
@@ -336,7 +336,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(179, 309);
+            this.label8.Location = new System.Drawing.Point(182, 309);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(47, 15);
             this.label8.TabIndex = 8;
@@ -344,7 +344,7 @@
             // 
             // player1raid5Box
             // 
-            this.player1raid5Box.Location = new System.Drawing.Point(243, 309);
+            this.player1raid5Box.Location = new System.Drawing.Point(246, 309);
             this.player1raid5Box.Name = "player1raid5Box";
             this.player1raid5Box.ReadOnly = true;
             this.player1raid5Box.Size = new System.Drawing.Size(100, 25);

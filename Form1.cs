@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
@@ -144,19 +145,6 @@ namespace FFLogsPolice
             TeamBox.Text = teamstr;
             GetNamesFromTeamBox();
             SurveyAll();
-            if (NamazuBox.Checked == true)
-            {
-                string namazuport = NamazuPortBox.Text;
-                if (namazuport == null)
-                    return;
-                if (namazuport == "")
-                    return;
-                int port = int.Parse(namazuport);
-                if (port < 0 || port > 65535)
-                    return;
-                string url = "http//127.0.0.1:" + port.ToString() + "/command";
-                PostUrl(url, GetMacro());
-            }
         }
         void GetNamesFromTeamBox()
         {
@@ -288,10 +276,34 @@ namespace FFLogsPolice
                     SurveyPlayer8();
                 }
             }
+            if (NamazuBox.Checked == true)
+            {
+                string namazuport = NamazuPortBox.Text;
+                if (namazuport == null)
+                    return;
+                if (namazuport == "")
+                    return;
+                int port = int.Parse(namazuport);
+                if (port < 0 || port > 65535)
+                    return;
+                string url = "http://127.0.0.1:" + port.ToString() + "/command";
+                string[] strings = GetMacros();
+                if (strings == null)
+                    return;
+                for (int i = 0; i < strings.Count(); i++)
+                {
+                    PostUrl(url, strings[i]);
+                    Thread.Sleep(10);
+                }
+            }
         }
         private string PostUrl(string url, string postdata)
         {
             string result = "";
+            if (postdata == null)
+                return result;
+            if (postdata == "")
+                return result;
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
             req.Method = "POST";
             req.Timeout = 800;
@@ -331,9 +343,11 @@ namespace FFLogsPolice
             Clipboard.SetText("/e <1>:<2>:<3>:<4>:<5>:<6>:<7>:<8>");
             MessageBox.Show("复制完成");
         }
-        private string GetMacro()
+        private string[] GetMacros()
         {
-            string rtn = "/p FFLogs快查结果<se.1>";
+            string[] strings = new string[9];
+            string head = "/e FFLogs快查结果<se.1>";
+            strings[0] = head;
             int playercount = 0;
             for (int i = 0; i < cPlayers.Count(); i++)
             {
@@ -343,42 +357,38 @@ namespace FFLogsPolice
                     continue;
                 if (cPlayers[i].name.Length > 0)
                 {
-                    string str = "\r\n" + "/p " + cPlayers[i].name + "@" + cPlayers[i].server
+                    string str = "/e " + cPlayers[i].name + "@" + cPlayers[i].server
                         + " P1S:" + cPlayers[i].FindParseAndGetPercentile(78)
                         + " P2S:" + cPlayers[i].FindParseAndGetPercentile(79)
                         + " P3S:" + cPlayers[i].FindParseAndGetPercentile(80)
                         + " P4S门神:" + cPlayers[i].FindParseAndGetPercentile(81)
                         + " P4S本体:" + cPlayers[i].FindParseAndGetPercentile(82);
-                    rtn += str;
+                    strings[playercount + 1] = str;
                     playercount++;
                 }
+            }
+            if (playercount > 0)
+                return strings;
+            return null;
+        }
+        private string GetMacro()
+        {
+            string[] strings = GetMacros();
+            if (strings == null)
+                return "未匹配到log";
+            string rtn = strings[0];
+            for (int i = 1; i < strings.Count(); i++)
+            {
+                string str = "\r\n" + strings[i];
+                rtn += str;
             }
             return rtn;
         }
         private void Macro_Click(object sender, EventArgs e)
         {
-            string rtn = "/p FFLogs快查结果<se.1>";
-            int playercount = 0;
-            for (int i = 0; i < cPlayers.Count(); i++)
-            {
-                if (cPlayers[i] == null)
-                    continue;
-                if (cPlayers[i].name == null)
-                    continue;
-                if (cPlayers[i].name.Length > 0)
-                {
-                    string str = "\r\n" + "/p " + cPlayers[i].name + "@" + cPlayers[i].server
-                        + " P1S:" + cPlayers[i].FindParseAndGetPercentile(78)
-                        + " P2S:" + cPlayers[i].FindParseAndGetPercentile(79)
-                        + " P3S:" + cPlayers[i].FindParseAndGetPercentile(80)
-                        + " P4S门神:" + cPlayers[i].FindParseAndGetPercentile(81)
-                        + " P4S本体:" + cPlayers[i].FindParseAndGetPercentile(82);
-                    rtn += str;
-                    playercount++;
-                }
-            }
+            string rtn = GetMacro();
             string msg = "";
-            if (playercount > 0)
+            if (rtn != "未匹配到log")
             {
                 msg = "宏已完成，点击确定复制进剪贴板\r\n" + rtn;
                 Clipboard.SetText(rtn);
@@ -393,6 +403,7 @@ namespace FFLogsPolice
         private void TeamBox_TextChanged(object sender, EventArgs e)
         {
             GetNamesFromTeamBox();
+            SurveyAll();
         }
 
         private void FFLogsPolice_Load(object sender, EventArgs e)

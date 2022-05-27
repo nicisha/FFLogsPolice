@@ -67,13 +67,21 @@ namespace FFLogsPolice
                 + name + "/" + server + "/CN?zone=44&metric=rdps&timeframe=historical&api_key="
                 + FFLogsPolice.FFLogsV1Key;
             Uri uri = new Uri(url);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-            Stream stream = response.GetResponseStream();
-            StreamReader streamReader = new StreamReader(stream);
-            string json = streamReader.ReadToEnd();
-            ConvertFromJson(json);
-            return true;
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(uri);
+                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                Stream stream = response.GetResponseStream();
+                StreamReader streamReader = new StreamReader(stream);
+                string json = streamReader.ReadToEnd();
+                ConvertFromJson(json);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                //ignore
+                return false;
+            }
         }
         public bool Survey()
         {
